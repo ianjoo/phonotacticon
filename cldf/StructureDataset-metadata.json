@@ -6,12 +6,13 @@
         }
     ],
     "dc:conformsTo": "http://cldf.clld.org/v1.0/terms.rdf#StructureDataset",
+    "dc:source": "sources.bib",
     "dcat:accessURL": "https://github.com/SimonGreenhill/phonotacticon",
     "prov:wasDerivedFrom": [
         {
             "rdf:about": "https://github.com/SimonGreenhill/phonotacticon",
             "rdf:type": "prov:Entity",
-            "dc:created": "701f561",
+            "dc:created": "329ce9e",
             "dc:title": "Repository"
         },
         {
@@ -36,6 +37,7 @@
     "tables": [
         {
             "dc:conformsTo": "http://cldf.clld.org/v1.0/terms.rdf#ValueTable",
+            "dc:extent": 20827,
             "tableSchema": {
                 "columns": [
                     {
@@ -125,6 +127,7 @@
         },
         {
             "dc:conformsTo": "http://cldf.clld.org/v1.0/terms.rdf#LanguageTable",
+            "dc:extent": 516,
             "tableSchema": {
                 "columns": [
                     {
@@ -202,6 +205,30 @@
                         "name": "Source"
                     }
                 ],
+                "foreignKeys": [
+                    {
+                        "columnReference": [
+                            "ID"
+                        ],
+                        "reference": {
+                            "resource": "segments.csv",
+                            "columnReference": [
+                                "Language_ID"
+                            ]
+                        }
+                    },
+                    {
+                        "columnReference": [
+                            "ID"
+                        ],
+                        "reference": {
+                            "resource": "sequences.csv",
+                            "columnReference": [
+                                "Language_ID"
+                            ]
+                        }
+                    }
+                ],
                 "primaryKey": [
                     "ID"
                 ]
@@ -210,6 +237,7 @@
         },
         {
             "dc:conformsTo": "http://cldf.clld.org/v1.0/terms.rdf#ParameterTable",
+            "dc:extent": 2,
             "tableSchema": {
                 "columns": [
                     {
@@ -245,6 +273,84 @@
                 ]
             },
             "url": "parameters.csv"
+        },
+        {
+            "dc:extent": 81804,
+            "tableSchema": {
+                "columns": [
+                    {
+                        "datatype": {
+                            "base": "string",
+                            "format": "[a-zA-Z0-9_\\-]+"
+                        },
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#id",
+                        "name": "ID"
+                    },
+                    {
+                        "datatype": "string",
+                        "name": "Language_ID"
+                    },
+                    {
+                        "datatype": "string",
+                        "name": "Sequence"
+                    },
+                    {
+                        "datatype": "string",
+                        "name": "Order"
+                    },
+                    {
+                        "datatype": "string",
+                        "name": "Category"
+                    },
+                    {
+                        "datatype": "string",
+                        "name": "IPA"
+                    }
+                ],
+                "primaryKey": [
+                    "ID"
+                ]
+            },
+            "url": "segments.csv"
+        },
+        {
+            "dc:extent": 54087,
+            "tableSchema": {
+                "columns": [
+                    {
+                        "datatype": {
+                            "base": "string",
+                            "format": "[a-zA-Z0-9_\\-]+"
+                        },
+                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#id",
+                        "name": "ID"
+                    },
+                    {
+                        "datatype": "string",
+                        "name": "Language_ID"
+                    },
+                    {
+                        "datatype": "string",
+                        "name": "Sequence"
+                    },
+                    {
+                        "datatype": "string",
+                        "name": "Order"
+                    },
+                    {
+                        "datatype": "string",
+                        "name": "Category"
+                    },
+                    {
+                        "datatype": "string",
+                        "name": "Segment"
+                    }
+                ],
+                "primaryKey": [
+                    "ID"
+                ]
+            },
+            "url": "sequences.csv"
         }
     ]
 }

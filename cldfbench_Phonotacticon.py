@@ -1,8 +1,9 @@
 import pathlib
+from pycldf import term_uri
+from pycldf.sources import Sources
 from cldfbench import CLDFSpec
 from cldfbench import Dataset as BaseDataset
 from clldutils.misc import slug
-
 
 class Dataset(BaseDataset):
     dir = pathlib.Path(__file__).parent
@@ -28,6 +29,12 @@ class Dataset(BaseDataset):
             o['Lect']: o['Note'] for o in self.raw_dir.read_csv('Phonotacticon1_0Notes.csv', dicts=True)
         }
 
+        # sources
+        sources = {
+            o['Lect']: f"{o['Lect']}{o['Year']}".replace(" ", "")
+            for o in self.raw_dir.read_csv('Phonotacticon1_0Sources.csv', dicts=True)
+        }
+        
         # Load language data
         languages = {}  # mapping of `Lect` to a language ID
         for o in self.raw_dir.read_csv('Phonotacticon1_0Lects.csv', dicts=True):
@@ -38,11 +45,13 @@ class Dataset(BaseDataset):
                 ID=languages[o['Lect']],
                 Name=o['Lect'], Lect=o['Lect'], 
                 Glottocode=o['Glottocode'],
-                Note=notes.get(o['Lect'], '')
+                Note=notes.get(o['Lect'], ''),
+                Source=[sources.get(o['Lect'], '')],
             ))
         
         # store parameters
         parameters = {'phoneme', 'tone'}
+        args.writer.objects['ParameterTable'] = [{'ID': p} for p in parameters]
         
         # add tones
         for item_id, o in enumerate(self.raw_dir.read_csv('Phonotacticon1_0Tones.csv', dicts=True), 1):
@@ -61,36 +70,35 @@ class Dataset(BaseDataset):
                 Parameter_ID='phoneme',
                 Value=o['Phoneme'],
             ))
+        
+        # add new table for segments
+        args.writer.cldf.add_table('segments.csv', term_uri('id'), 'Language_ID', 'Sequence', 'Order', 'Category', 'IPA')
+        args.writer.cldf.add_foreign_key('LanguageTable', 'ID', 'segments.csv', 'Language_ID')
+        for item_id, o in enumerate(self.raw_dir.read_csv('Phonotacticon1_0Segments.csv', dicts=True), 1):
+           args.writer.objects['segments.csv'].append(dict(
+               ID=f'seg_{item_id}',
+               Language_ID=languages.get(o['Lect'], o['Lect']),
+               Sequence=o['Sequence'],
+               Order=o['Order'],
+               Category=o['Category'],
+               IPA=o['ipa'],
+           ))
 
+        # add new table for sequences
+        args.writer.cldf.add_table('sequences.csv', term_uri('id'), 'Language_ID', 'Sequence', 'Order', 'Category', 'Segment')
+        args.writer.cldf.add_foreign_key('LanguageTable', 'ID', 'sequences.csv', 'Language_ID')
+        for item_id, o in enumerate(self.raw_dir.read_csv('Phonotacticon1_0Sequences.csv', dicts=True), 1):
+           args.writer.objects['sequences.csv'].append(dict(
+               ID=f'seq_{item_id}',
+               Language_ID=languages.get(o['Lect'], o['Lect']),
+               Sequence=o['Sequence'],
+               Order=o['Order'],
+               Category=o['Category'],
+               Segment=o['Segment'],
+           ))
+        
+        # add sources
+        args.writer.cldf.add_sources(
+            *Sources.from_file(self.raw_dir / 'sources.bib')
+        )
 
-        # TODO: better item_id?  = f"{o['Lect']}-"
-        # TODO: better parameters?
-        # TODO: sort out code table
-        # TODO Phonotacticon1_0Sequences.csv
-        # TODO Phonotacticon1_0Sources.csv
-        
-        #for item_id, o in enumerate(self.raw_dir.read_csv('Phonotacticon1_0Segments.csv', dicts=True), 1):
-        #    parameter_id = slug(f"{o['Sequence']}_{o['Order']}_{o['Category']}")
-        #    args.writer.objects['ValueTable'].append(dict(
-        #        ID=f'seg_{item_id}',
-        #        Language_ID=languages.get(o['Lect'], o['Lect']),
-        #        Parameter_ID=parameter_id,
-        #        Sequence=o['Sequence'],
-        #        Order=o['Order'],
-        #        Category=o['Category'],
-        #        Value=o['ipa'],
-        #    ))
-        #    parameters.add(parameter_id)
-            
-        
-        
-        
-        
-        
-        
-
-        # args.writer.cldf.add_columns('ValueTable', 'Sequence')
-        # args.writer.cldf.add_columns('ValueTable', 'Order')
-        # args.writer.cldf.add_columns('ValueTable', 'Category')
-
-        args.writer.objects['ParameterTable'] = [{'ID': p} for p in parameters]
