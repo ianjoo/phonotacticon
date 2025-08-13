@@ -6,7 +6,14 @@
         }
     ],
     "dc:conformsTo": "http://cldf.clld.org/v1.0/terms.rdf#StructureDataset",
+    "dcat:accessURL": "https://github.com/SimonGreenhill/phonotacticon",
     "prov:wasDerivedFrom": [
+        {
+            "rdf:about": "https://github.com/SimonGreenhill/phonotacticon",
+            "rdf:type": "prov:Entity",
+            "dc:created": "701f561",
+            "dc:title": "Repository"
+        },
         {
             "rdf:about": "https://github.com/glottolog/glottolog",
             "rdf:type": "prov:Entity",
@@ -29,7 +36,6 @@
     "tables": [
         {
             "dc:conformsTo": "http://cldf.clld.org/v1.0/terms.rdf#ValueTable",
-            "dc:extent": 81804,
             "tableSchema": {
                 "columns": [
                     {
@@ -85,18 +91,6 @@
                         "required": false,
                         "separator": ";",
                         "name": "Source"
-                    },
-                    {
-                        "datatype": "string",
-                        "name": "Sequence"
-                    },
-                    {
-                        "datatype": "string",
-                        "name": "Order"
-                    },
-                    {
-                        "datatype": "string",
-                        "name": "Category"
                     }
                 ],
                 "foreignKeys": [
@@ -131,7 +125,6 @@
         },
         {
             "dc:conformsTo": "http://cldf.clld.org/v1.0/terms.rdf#LanguageTable",
-            "dc:extent": 335,
             "tableSchema": {
                 "columns": [
                     {
@@ -196,6 +189,14 @@
                     },
                     {
                         "datatype": "string",
+                        "name": "Lect"
+                    },
+                    {
+                        "datatype": "string",
+                        "name": "Note"
+                    },
+                    {
+                        "datatype": "string",
                         "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#source",
                         "separator": ";",
                         "name": "Source"
@@ -209,7 +210,6 @@
         },
         {
             "dc:conformsTo": "http://cldf.clld.org/v1.0/terms.rdf#ParameterTable",
-            "dc:extent": 7655,
             "tableSchema": {
                 "columns": [
                     {
