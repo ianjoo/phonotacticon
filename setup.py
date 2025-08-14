@@ -12,7 +12,7 @@ setup(
         ]
     },
     install_requires=[
-        'cldfbench',
+        'cldfbench', 'pyglottolog',
     ],
     extras_require={
         'test': [

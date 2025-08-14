@@ -5,14 +5,19 @@
             "@language": "en"
         }
     ],
+    "dc:bibliographicCitation": "Joo, I., & Hsu, Y.-Y. (2024). Phonotacticon: a cross-linguistic phonotactic database. Linguistic Typology, 29(2), 405\u2013431. https://doi.org/10.1515/lingty-2023-0094",
     "dc:conformsTo": "http://cldf.clld.org/v1.0/terms.rdf#StructureDataset",
+    "dc:description": "Phonotacticon is a cross-linguistic database that contains syllabic phonotactic information about spoken lects (linguistic varieties), including the possible forms of the onset, nucleus and coda of each lect, as well as the phonemic and tonemic inventorie",
+    "dc:identifier": "https://github.com/ianjoo/phonotacticon",
+    "dc:license": "CC-BY 4.0",
     "dc:source": "sources.bib",
+    "dc:title": "Phonotacticon: a cross-linguistic phonotactic database (v1.0)",
     "dcat:accessURL": "https://github.com/SimonGreenhill/phonotacticon",
     "prov:wasDerivedFrom": [
         {
             "rdf:about": "https://github.com/SimonGreenhill/phonotacticon",
             "rdf:type": "prov:Entity",
-            "dc:created": "329ce9e",
+            "dc:created": "b669b27",
             "dc:title": "Repository"
         },
         {
@@ -211,17 +216,6 @@
                             "ID"
                         ],
                         "reference": {
-                            "resource": "segments.csv",
-                            "columnReference": [
-                                "Language_ID"
-                            ]
-                        }
-                    },
-                    {
-                        "columnReference": [
-                            "ID"
-                        ],
-                        "reference": {
                             "resource": "sequences.csv",
                             "columnReference": [
                                 "Language_ID"
@@ -273,45 +267,6 @@
                 ]
             },
             "url": "parameters.csv"
-        },
-        {
-            "dc:extent": 81804,
-            "tableSchema": {
-                "columns": [
-                    {
-                        "datatype": {
-                            "base": "string",
-                            "format": "[a-zA-Z0-9_\\-]+"
-                        },
-                        "propertyUrl": "http://cldf.clld.org/v1.0/terms.rdf#id",
-                        "name": "ID"
-                    },
-                    {
-                        "datatype": "string",
-                        "name": "Language_ID"
-                    },
-                    {
-                        "datatype": "string",
-                        "name": "Sequence"
-                    },
-                    {
-                        "datatype": "string",
-                        "name": "Order"
-                    },
-                    {
-                        "datatype": "string",
-                        "name": "Category"
-                    },
-                    {
-                        "datatype": "string",
-                        "name": "IPA"
-                    }
-                ],
-                "primaryKey": [
-                    "ID"
-                ]
-            },
-            "url": "segments.csv"
         },
         {
             "dc:extent": 54087,

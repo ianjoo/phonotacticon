@@ -1,8 +1,8 @@
 {
     "id": "Phonotacticon",
-    "title": null,
-    "description": null,
-    "license": null,
-    "url": null,
-    "citation": null
+    "title": "Phonotacticon: a cross-linguistic phonotactic database (v1.0)",
+    "description": "Phonotacticon is a cross-linguistic database that contains syllabic phonotactic information about spoken lects (linguistic varieties), including the possible forms of the onset, nucleus and coda of each lect, as well as the phonemic and tonemic inventorie",
+    "license": "CC-BY 4.0",
+    "url": "https://github.com/ianjoo/phonotacticon",
+    "citation": "Joo, I., & Hsu, Y.-Y. (2024). Phonotacticon: a cross-linguistic phonotactic database. Linguistic Typology, 29(2), 405–431. https://doi.org/10.1515/lingty-2023-0094"
 }

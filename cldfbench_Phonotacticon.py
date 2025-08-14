@@ -71,19 +71,6 @@ class Dataset(BaseDataset):
                 Value=o['Phoneme'],
             ))
         
-        # add new table for segments
-        args.writer.cldf.add_table('segments.csv', term_uri('id'), 'Language_ID', 'Sequence', 'Order', 'Category', 'IPA')
-        args.writer.cldf.add_foreign_key('LanguageTable', 'ID', 'segments.csv', 'Language_ID')
-        for item_id, o in enumerate(self.raw_dir.read_csv('Phonotacticon1_0Segments.csv', dicts=True), 1):
-           args.writer.objects['segments.csv'].append(dict(
-               ID=f'seg_{item_id}',
-               Language_ID=languages.get(o['Lect'], o['Lect']),
-               Sequence=o['Sequence'],
-               Order=o['Order'],
-               Category=o['Category'],
-               IPA=o['ipa'],
-           ))
-
         # add new table for sequences
         args.writer.cldf.add_table('sequences.csv', term_uri('id'), 'Language_ID', 'Sequence', 'Order', 'Category', 'Segment')
         args.writer.cldf.add_foreign_key('LanguageTable', 'ID', 'sequences.csv', 'Language_ID')
