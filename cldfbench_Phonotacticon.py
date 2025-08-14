@@ -11,7 +11,10 @@ class Dataset(BaseDataset):
 
     def cldf_specs(self):
         # set this to a structure dataset
-        return CLDFSpec(dir=self.cldf_dir, module="StructureDataset")
+        return CLDFSpec(
+            dir=self.cldf_dir,
+            module="StructureDataset", 
+            metadata_fname='cldf-metadata.json')
         
     def cmd_makecldf(self, args):
         """
