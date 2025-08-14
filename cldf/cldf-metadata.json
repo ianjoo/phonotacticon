@@ -12,18 +12,18 @@
     "dc:license": "CC-BY 4.0",
     "dc:source": "sources.bib",
     "dc:title": "Phonotacticon: a cross-linguistic phonotactic database (v1.0)",
-    "dcat:accessURL": "https://github.com/SimonGreenhill/phonotacticon",
+    "dcat:accessURL": "https://github.com/ianjoo/phonotacticon",
     "prov:wasDerivedFrom": [
         {
-            "rdf:about": "https://github.com/SimonGreenhill/phonotacticon",
+            "rdf:about": "https://github.com/ianjoo/phonotacticon",
             "rdf:type": "prov:Entity",
-            "dc:created": "1fd1c24",
+            "dc:created": "4c33c6b",
             "dc:title": "Repository"
         },
         {
             "rdf:about": "https://github.com/glottolog/glottolog",
             "rdf:type": "prov:Entity",
-            "dc:created": "v5.2.1-2-gbe35f1980c",
+            "dc:created": "v5.2.1-9-g9877d48339",
             "dc:title": "Glottolog"
         }
     ],
