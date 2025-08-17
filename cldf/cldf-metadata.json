@@ -12,18 +12,18 @@
     "dc:license": "CC-BY 4.0",
     "dc:source": "sources.bib",
     "dc:title": "Phonotacticon: a cross-linguistic phonotactic database (v1.0)",
-    "dcat:accessURL": "https://github.com/ianjoo/phonotacticon",
+    "dcat:accessURL": "https://github.com/SimonGreenhill/phonotacticon",
     "prov:wasDerivedFrom": [
         {
-            "rdf:about": "https://github.com/ianjoo/phonotacticon",
+            "rdf:about": "https://github.com/SimonGreenhill/phonotacticon",
             "rdf:type": "prov:Entity",
-            "dc:created": "4c33c6b",
+            "dc:created": "f283156",
             "dc:title": "Repository"
         },
         {
             "rdf:about": "https://github.com/glottolog/glottolog",
             "rdf:type": "prov:Entity",
-            "dc:created": "v5.2.1-9-g9877d48339",
+            "dc:created": "v5.2.1-2-gbe35f1980c",
             "dc:title": "Glottolog"
         }
     ],
@@ -210,19 +210,6 @@
                         "name": "Source"
                     }
                 ],
-                "foreignKeys": [
-                    {
-                        "columnReference": [
-                            "ID"
-                        ],
-                        "reference": {
-                            "resource": "sequences.csv",
-                            "columnReference": [
-                                "Language_ID"
-                            ]
-                        }
-                    }
-                ],
                 "primaryKey": [
                     "ID"
                 ]
@@ -299,6 +286,19 @@
                     {
                         "datatype": "string",
                         "name": "Segment"
+                    }
+                ],
+                "foreignKeys": [
+                    {
+                        "columnReference": [
+                            "Language_ID"
+                        ],
+                        "reference": {
+                            "resource": "languages.csv",
+                            "columnReference": [
+                                "ID"
+                            ]
+                        }
                     }
                 ],
                 "primaryKey": [

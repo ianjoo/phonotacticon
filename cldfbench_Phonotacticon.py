@@ -76,8 +76,13 @@ class Dataset(BaseDataset):
         
         # add new table for sequences
         args.writer.cldf.add_table('sequences.csv', term_uri('id'), 'Language_ID', 'Sequence', 'Order', 'Category', 'Segment')
+<<<<<<< HEAD
         args.writer.cldf.add_foreign_key('LanguageTable', 'ID', 'sequences.csv', 'Language_ID')
         for item_id, o in enumerate(self.raw_dir.read_csv('PhonotacticonSequences.csv', dicts=True), 1):
+=======
+        args.writer.cldf.add_foreign_key('sequences.csv', 'Language_ID', 'LanguageTable')
+        for item_id, o in enumerate(self.raw_dir.read_csv('PhonotacticonSequences.csv', dicts=True), 1):
+>>>>>>> 7820e626807ef99cfaf3701db0c53f7b031a5bef
            args.writer.objects['sequences.csv'].append(dict(
                ID=f'seq_{item_id}',
                Language_ID=languages.get(o['Lect'], o['Lect']),
